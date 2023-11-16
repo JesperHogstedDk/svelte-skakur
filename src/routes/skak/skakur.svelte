@@ -3,121 +3,83 @@
 	import { onMount } from 'svelte';
 
 	/**
+	 * @type {string}
+	 */
+	export let playerName;
+
+	/**
+	 * @type {boolean}
+	 */
+	export let start = true;
+
+	//export let isRunning = true;
+
+	/**
 	 * @type {HTMLCanvasElement}
 	 */
 	let skakCanvas;
-	
+
+	/**
+	 * @type NodeJS.Timeout}
+	 */
+	let timeoutId;
+
 	onMount(() => {
-		const context = skakCanvas.getContext('2d');
-		let radius = skakCanvas.height / 2;
-		if (context !==  null) {
-			context.translate(radius, radius);
-		}
-		radius = radius * 0.9;
-		drawClock();
-
-		function drawClock() {
-			drawFace(context, radius);
-			drawNumbers(context, radius);
-			drawTime(context, radius);
-		}
-
-		/**
-		 * @param {CanvasRenderingContext2D | null} ctx
-		 * @param {number} radius
-		 */
-		function drawFace(ctx, radius) {
-			if (ctx !== null) {
-				const grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
-				grad.addColorStop(0, '#333');
-				grad.addColorStop(0.5, 'white');
-				grad.addColorStop(1, '#333');
-
-				ctx.beginPath();
-				ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-				ctx.fillStyle = 'white';
-				ctx.fill();
-
-				ctx.strokeStyle = grad;
-				ctx.lineWidth = radius * 0.1;
-				ctx.stroke();
-
-				ctx.beginPath();
-				ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-				ctx.fillStyle = '#333';
-				ctx.fill();
-			}
-		}
-
-		/**
-		 * @param {CanvasRenderingContext2D | null} ctx
-		 * @param {number} radius
-		 */
-		function drawNumbers(ctx, radius) {
-			if (ctx !== null) {
-				ctx.font = radius * 0.15 + 'px arial';
-				ctx.textBaseline = 'middle';
-				ctx.textAlign = 'center';
-				for (let num = 1; num < 13; num++) {
-					let ang = (num * Math.PI) / 6;
-					ctx.rotate(ang);
-					ctx.translate(0, -radius * 0.85);
-					ctx.rotate(-ang);
-					ctx.fillText(num.toString(), 0, 0);
-					ctx.rotate(ang);
-					ctx.translate(0, radius * 0.85);
-					ctx.rotate(-ang);
-				}
-			}
-		}
-
-		/**
-		 * @param {CanvasRenderingContext2D | null} ctx
-		 * @param {number} radius
-		 */
-		function drawTime(ctx, radius) {
-			const now = new Date();
-			let hour = now.getHours();
-			let minute = now.getMinutes();
-			let second = now.getSeconds();
-			//hour
-			hour = hour % 12;
-			hour = (hour * Math.PI) / 6 + (minute * Math.PI) / (6 * 60) + (second * Math.PI) / (360 * 60);
-
-			if (ctx !== null) {
-				drawHand(ctx, hour, radius * 0.5, radius * 0.07);
-				//minute
-				minute = (minute * Math.PI) / 30 + (second * Math.PI) / (30 * 60);
-				drawHand(ctx, minute, radius * 0.8, radius * 0.07);
-				// second
-				second = (second * Math.PI) / 30;
-				drawHand(ctx, second, radius * 0.9, radius * 0.02);
-			}
-		}
-
-		/**
-		 * @param {{ beginPath: () => void; lineWidth: any; lineCap: string; moveTo: (arg0: number, arg1: number) => void; rotate: (arg0: number) => void; lineTo: (arg0: number, arg1: number) => void; stroke: () => void; }} ctx
-		 * @param {number} pos
-		 * @param {number} length
-		 * @param {number} width
-		 */
-		function drawHand(ctx, pos, length, width) {
-			ctx.beginPath();
-			ctx.lineWidth = width;
-			ctx.lineCap = 'round';
-			ctx.moveTo(0, 0);
-			ctx.rotate(pos);
-			ctx.lineTo(0, -length);
-			ctx.stroke();
-			ctx.rotate(-pos);
-		}
+		ur.init();
 	});
 
-	//export let Skakur;
+	const ur = {
+		init: function () {
+			this.setRadius((0.9 * skakCanvas.height) / 2);
+			console.log(this.radius);
+
+			let ct = skakCanvas.getContext('2d');
+			ct?.translate(this.radius, this.radius);
+
+			//this.drawClock();
+			console.log(playerName + ' kalder init med start=' + start);
+			if (start) {
+				timeoutId = setInterval(this.drawClock, 4000);
+				console.log(timeoutId);
+			}
+		},
+		stopUret: function () {
+			console.log(timeoutId);
+			clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
+			//timeOut = {};
+		},
+		startUret: function () {
+			timeoutId = setInterval(this.drawClock, 4000);
+			console.log(`Ny timeoutId=` + timeoutId);
+		},
+		radius: 0,
+		setRadius: function (/** @type {number} */ radius) {
+			this.radius = radius;
+		},
+		drawClock: function () {
+			console.log({ playerName }.playerName + ' draw med timeoutId=' + timeoutId);
+			//let ct = skakCanvas.getContext('2d');
+			//drawFace(this.ctx, radius);
+			//drawNumbers(ctx, radius);
+			//drawTime(ctx, radius, new Date());
+		}
+	};
+
+	export function stopUr() {
+		console.log({ playerName }.playerName + ' stopper uret med timeotId=' + timeoutId);
+		ur.stopUret();
+	}
+
+	export function startUr() {
+		console.log({ playerName }.playerName + ' stopper uret med timeotId=' + timeoutId);
+		ur.startUret();
+	}
 </script>
 
-<span>selve uret</span>
-
-<div>
+<h1>Spiller: {playerName}</h1>
+<span>
 	<canvas bind:this={skakCanvas} width="400" height="400" style="background-color:#333" />
-</div>
+</span>
+
+<style>
+</style>
