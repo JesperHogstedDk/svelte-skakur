@@ -6,8 +6,8 @@
 	/** * @type {Skakur}  */
 	let skakur2;
 
-	let playerName1 = '1';
-	let playerName2 = '2';
+	let playerName1 = '1234567890';
+	let playerName2 = '0987654321';
 </script>
 
 <h1>Skakur</h1>
@@ -28,48 +28,37 @@
 	<h1>{playerName2}</h1>
 </div>
 
-
-<div class="ur">
-		<button
-			on:click={() => {
-				skakur1.stopUr();
-				skakur2.startUr();
-			}}
-		>
-			Stop {playerName1} og start {playerName2}!
-		</button>
-
-	<Skakur bind:this={skakur1} playerName={playerName1} />
-
-	<button
-		on:click={() => {
-			skakur2.stopUr();
-			skakur1.startUr();
-		}}
-	>
-		Stop {playerName2} og start {playerName1}!
-	</button>
-
-	<Skakur bind:this={skakur2} playerName={playerName2} />
+<div class="outer">
+	<div class="ur">
+		<button class="nulstil">Nulstil</button>
+		<Skakur bind:this={skakur1} playerName={playerName1} />
+		<Skakur bind:this={skakur2} playerName={playerName2} />
+		<div>
+			<button
+				class="button1"
+				on:click={() => {
+					skakur1.stopUr();
+					skakur2.startUr();
+				}}
+			>
+				Stop <strong>{playerName1}</strong> og start {playerName2}!
+			</button>
+		</div>
+		<div>
+			<button
+				class="button2"
+				on:click={() => {
+					skakur2.stopUr();
+					skakur1.startUr();
+				}}
+			>
+				Stop <strong>{playerName2}</strong> og start {playerName1}!
+			</button>
+		</div>
+	</div>
 </div>
 
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-<p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p><p>hr wh iowoifoif woi foi foi  åoi fon s oi oi oi  fwn</p>
-
+<p>Her kommer der et brædt</p>
 
 <style>
 	.versus h1 {
@@ -78,9 +67,42 @@
 		/* position: sticky; */
 	}
 
+	.outer {
+		padding: 10px;
+		background-color: chartreuse;
+		border: 1em;
+		color: aqua;
+		display: inline-block;
+	}
+
 	.ur {
 		color: red;
-		display: inline-flex; 
+		border-color: blueviolet;
+		/* border-spacing: 10rem; */
+		/* display: inline-block; */
+	}
 
+	.nulstil {
+		position: relative;
+		left: 5em;
+		margin-bottom: 1em;
+		width: 70%;
+	}
+
+	.button1 {
+		position: relative;
+		top: 1em;
+		left: 2em;
+		height: 2.8em;
+		max-width: 14em;
+		overflow: hidden;
+	}
+	.button2 {
+		position: relative;
+		left: 23em;
+		bottom: 2em;
+		height: 2.8em;
+		max-width: 14em;
+		overflow: hidden;
 	}
 </style>

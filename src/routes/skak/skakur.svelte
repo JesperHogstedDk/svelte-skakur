@@ -26,7 +26,7 @@
 	const ur = {
 		init: function () {
 			radius = skakCanvas.height / 2;
-			// console.log(`Radius: ${radius}`);
+			console.log(`Radius: ${radius}`);
 
 			let ct = skakCanvas.getContext('2d');
 			if (ct !== null) {
@@ -34,11 +34,11 @@
 				context = ct;
 				radius = radius * 0.9;
 			}
-			// console.log(`Radius: ${radius}`);
+			console.log(`Radius: ${radius}`);
 			this.drawClock();
 		},
 		drawClock: function () {
-			console.log(`${ playerName } kalder drawClock med timeoutId=${timeoutId}`);
+			console.log(`${playerName} kalder drawClock med timeoutId=${timeoutId}`);
 			this.drawFace();
 			this.drawNumbers();
 			this.drawTime();
@@ -149,32 +149,39 @@
 	//$: dispatchEvent('click', playerName);
 </script>
 
-<div class="ur">
-	<h1>Spiller: {playerName}</h1>
-	<button class="right" on:click={() => ur.startUret}>START</button>
-	<div class="right">
+<div class="uret">
+	<div class="h1">{playerName}</div>
+	<!-- <button class="right" on:click={() => ur.startUret}>START</button> -->
+	<!-- <div class="right">
 		<input type="radio" name="StartStop" />
 		<input type="radio" name="StartStop" />
-	</div>
-	<canvas bind:this={skakCanvas} width="200" height="200" />
+	</div> -->
+	<canvas bind:this={skakCanvas} width="260" height="260" />
 </div>
 
 <style>
-	.ur {
+	.uret {
 		background-color: #313;
 		/* margin: 1em; */
 		display: inline-block;
+		/* inline-size: 260; */
+		/* max-width: 270; */
+		/* overflow: hidden; */
 		/* position: absolute;
 		right: auto;		 */
 	}
-	.right {
-		/* float: right; */
+	/* .right {
 		position: relative;
 		left: 4.8em;
-	}
-	h1 {
-		background-color: #313;
+	} */
+	div.h1 {
+		background-color: #999;
+		font-size: 2em;
 		text-align: center;
+		max-height: 1em;
+		width: 260px;
+		/* max-width: 12; */
+		overflow: hidden;
 	}
 	canvas {
 		background-color: #333;
