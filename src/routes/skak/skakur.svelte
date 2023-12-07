@@ -26,18 +26,19 @@
 	const ur = {
 		init: function () {
 			radius = skakCanvas.height / 2;
-			console.log(radius);
+			// console.log(`Radius: ${radius}`);
 
 			let ct = skakCanvas.getContext('2d');
 			if (ct !== null) {
 				ct.translate(radius, radius);
 				context = ct;
-				radius = radius * 0.90
+				radius = radius * 0.9;
 			}
+			// console.log(`Radius: ${radius}`);
 			this.drawClock();
 		},
 		drawClock: function () {
-			console.log({ playerName }.playerName + ' drawClock med timeoutId=' + timeoutId);
+			console.log(`${ playerName } kalder drawClock med timeoutId=${timeoutId}`);
 			this.drawFace();
 			this.drawNumbers();
 			this.drawTime();
@@ -121,31 +122,61 @@
 			context.rotate(-pos);
 		},
 		stopUret: function () {
-			console.log(timeoutId);
+			//console.log(timeoutId);
 			clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
 		},
 		startUret: function () {
-			clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
+			if (timeoutId !== undefined) {
+				clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
+			}
 			timeoutId = setInterval(() => ur.drawClock(), 1000);
-			console.log(`Ny timeoutId=` + timeoutId);
+			//console.log(`Ny timeoutId=` + timeoutId);
 		}
 	};
 
 	export function stopUr() {
 		console.log({ playerName }.playerName + ' stopper uret med timeoutId=' + timeoutId);
 		ur.stopUret();
+		console.log(`Player ${playerName} Ny timeoutId=${timeoutId}`);
 	}
 
 	export function startUr() {
-		console.log({ playerName }.playerName + ' stopper uret med timeotId=' + timeoutId);
+		console.log({ playerName }.playerName + ' stopper uret med timeoutId=' + timeoutId);
 		ur.startUret();
 		console.log(`Ny timeoutId=` + timeoutId);
 	}
+
+	//$: dispatchEvent('click', playerName);
 </script>
 
+<div class="ur">
+	<h1>Spiller: {playerName}</h1>
+	<button class="right" on:click={() => ur.startUret}>START</button>
+	<div class="right">
+		<input type="radio" name="StartStop" />
+		<input type="radio" name="StartStop" />
+	</div>
+	<canvas bind:this={skakCanvas} width="200" height="200" />
+</div>
+
 <style>
+	.ur {
+		background-color: #313;
+		/* margin: 1em; */
+		display: inline-block;
+		/* position: absolute;
+		right: auto;		 */
+	}
+	.right {
+		/* float: right; */
+		position: relative;
+		left: 4.8em;
+	}
+	h1 {
+		background-color: #313;
+		text-align: center;
+	}
+	canvas {
+		background-color: #333;
+	}
 </style>
-
-<h1>Spiller: {playerName}</h1>
-<canvas bind:this={skakCanvas} width="400" height="400" style="background-color:#333" />
-
