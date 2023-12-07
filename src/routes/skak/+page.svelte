@@ -6,8 +6,8 @@
 	/** * @type {Skakur}  */
 	let skakur2;
 
-	let playerName1 = '1234567890';
-	let playerName2 = '0987654321';
+	let playerName1 = 'Hvid spiller';
+	let playerName2 = 'Sort spiller';
 </script>
 
 <h1>Skakur</h1>
@@ -30,7 +30,7 @@
 
 <div class="outer">
 	<div class="ur">
-		<button class="nulstil">Nulstil</button>
+		<button class="nulstil" on:click={() => {skakur1.nulstil();skakur2.nulstil();}} >Nulstil</button>
 		<Skakur bind:this={skakur1} playerName={playerName1} />
 		<Skakur bind:this={skakur2} playerName={playerName2} />
 		<div>

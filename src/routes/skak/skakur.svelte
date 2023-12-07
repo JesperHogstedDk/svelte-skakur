@@ -131,6 +131,15 @@
 			}
 			timeoutId = setInterval(() => ur.drawClock(), 1000);
 			//console.log(`Ny timeoutId=` + timeoutId);
+		},
+		nulstil: function () {
+			// console.log(`stopped=${stopped}`);
+			console.log({stopped});
+			this.stopUret();
+			clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
+			stopped = { hour: 0, minute: 0, second: 0 };
+			console.log({stopped});
+			this.drawClock()
 		}
 	};
 
@@ -146,6 +155,10 @@
 		console.log(`Ny timeoutId=` + timeoutId);
 	}
 
+	export function nulstil() {
+		console.log(`Stopper og nulstiller ${playerName}'s ur!'`);
+		ur.nulstil();
+	}
 	//$: dispatchEvent('click', playerName);
 </script>
 
