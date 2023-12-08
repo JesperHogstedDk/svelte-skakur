@@ -6,12 +6,12 @@
 	/** * @type {Skakur}  */
 	let skakur2;
 
-	let playerName1 = 'Hvid spiller';
-	let playerName2 = 'Sort spiller';
+	let playerName1 = '';
+	let playerName2 = '';
 </script>
 
 <h1>Skakur</h1>
-<p>
+<div>
 	<label
 		>Hvid's navn:
 		<input bind:value={playerName1} placeholder="skriv hvid spiller's navn her" />
@@ -20,16 +20,16 @@
 		>Sort's navn:
 		<input bind:value={playerName2} placeholder="skriv sort spiller's navn her" />
 	</label>
-</p>
-
-<div class="versus">
+</div>
+<p></p>
+<!-- <div class="versus">
 	<h1>{playerName1}</h1>
 	<span>versus</span>
 	<h1>{playerName2}</h1>
-</div>
+</div> -->
 
 <div class="outer">
-	<div class="ur">
+	<!-- <div class="ur"> -->
 		<button class="nulstil" on:click={() => {skakur1.nulstil();skakur2.nulstil();}} >Nulstil</button>
 		<Skakur bind:this={skakur1} playerName={playerName1} />
 		<Skakur bind:this={skakur2} playerName={playerName2} />
@@ -55,32 +55,33 @@
 				Stop <strong>{playerName2}</strong> og start {playerName1}!
 			</button>
 		</div>
-	</div>
+	<!-- </div> -->
 </div>
 
 <p>Her kommer der et brædt</p>
 
 <style>
-	.versus h1 {
+	/* .versus h1 {
 		color: aqua;
 		display: inline;
 		/* position: sticky; */
-	}
+	/* } */ 
 
 	.outer {
 		padding: 10px;
-		background-color: chartreuse;
-		border: 1em;
-		color: aqua;
-		display: inline-block;
-	}
-
-	.ur {
-		color: red;
-		border-color: blueviolet;
-		/* border-spacing: 10rem; */
+		background-color: green;
+		/* border: 1em; */
+		/* color: aqua; */
+		width: 525px;
 		/* display: inline-block; */
 	}
+
+	/* .ur { */
+		/* color: red; */
+		/* border-color: blueviolet; */
+		/* border-spacing: 10rem; */
+		/* display: inline-block; */
+	/* } */
 
 	.nulstil {
 		position: relative;

@@ -133,13 +133,12 @@
 			//console.log(`Ny timeoutId=` + timeoutId);
 		},
 		nulstil: function () {
-			// console.log(`stopped=${stopped}`);
-			console.log({stopped});
+			//console.log(stopped);
 			this.stopUret();
 			clearInterval(/*** @type number | NodeJS.Timeout} */ timeoutId);
 			stopped = { hour: 0, minute: 0, second: 0 };
-			console.log({stopped});
-			this.drawClock()
+			//console.log(stopped);
+			this.drawClock();
 		}
 	};
 
@@ -174,7 +173,7 @@
 
 <style>
 	.uret {
-		background-color: #313;
+		/* background-color: #313; */
 		/* margin: 1em; */
 		display: inline-block;
 		/* inline-size: 260; */
@@ -188,10 +187,10 @@
 		left: 4.8em;
 	} */
 	div.h1 {
-		background-color: #999;
+		background-color: yellowgreen;
 		font-size: 2em;
 		text-align: center;
-		max-height: 1em;
+		height: 1.4em;
 		width: 260px;
 		/* max-width: 12; */
 		overflow: hidden;

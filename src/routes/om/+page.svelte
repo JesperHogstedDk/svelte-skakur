@@ -4,11 +4,12 @@
 <ul>
 	<li><input type="checkbox" checked>2 analoge ure begge starter kl 12</li>
     <li><input type="checkbox" checked >En knap til at stoppe den aktive spillers ur og starte modspillers ur</li>
-    <li><input type="checkbox" >Uret skal køre videre når siden ikke har fokus</li>
-
-    <li><input type="checkbox" >Rette fejl som lader timeout fortsætte uden at uret går, når der skiftes væk fra siden</li>
-    <li class="error"><input type="checkbox" >Uret skal udstille en Nulstil knap</li>
-    <li><input type="checkbox" >Vise urene digitale</li>    
+    <li class="error"><input type="checkbox" >Rette fejl som opretter nye timeout variable og lader de eksisterende fortsætte men uden at viserne flyttes, når der skiftes væk fra siden og man kommer tilbage</li>
+    <li class="feature"><input type="checkbox" >Urene skal huske deres tider, og det aktive ur skal fortsætte, når siden mister fokus</li>
+    <li><input type="checkbox"  checked >Uret skal udstille en Nulstil knap</li>
+    <li><input type="checkbox" >Mulighed for at indtaste maksimum spilletid. Når maksimum tid opnås stoppes urene</li>    
+    <li><input type="checkbox" >Vise logik ved at enable/disable knapper</li>    
+    <li><input type="checkbox" >Vise urene digitale</li>
     <li><input type="checkbox" >Mulighed for at indtaste skaktræk</li>
     <li><input type="checkbox" >Mulighed for at gemme tiden, skaktræk samt de to spillere</li>
     <li><input type="checkbox" >Mulighed for at oprette brugere permanent og gemme spil </li>
@@ -23,5 +24,8 @@
 <style>
     .error {
         color: red;
+    }
+    .feature {
+        color: green;
     }
 </style>
